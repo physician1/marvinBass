@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Thoaks Bass Online') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,33 +18,91 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <!-- New links -->
+     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/site/fonts/icomoon/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}"> --}}
+
+    <link rel="stylesheet" href="{{ asset('css/site/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site/owl.theme.default.min.css') }}">
+ <!--<link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+
+    <link rel="stylesheet" href="{{ asset('css/site/jquery.fancybox.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/site/bootstrap-datepicker.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/site/fonts/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site/style.css') }}">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="overflow-x: hidden;">
+  <div id="app">
+  {{-- <div id="overlayer"></div> --}}
+    <div class="site-wrap"  id="home-section">
+     <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-md-3 col-xl-2  d-block">
+           <!--  <h1 class="mb-0 site-logo"><a href="index.php" class="text-black h2 mb-0">MT<span class="text-primary"></span> </a></h1> -->
+           <a href="{{ url('/') }}"><img src={{asset('css/site/logoimage/logo.png')}}  width="150" height="50" hr></a>
+          </div>
 
-                    </ul>
+          <div class="col-12 col-md-9 col-xl-10 main-menu">
+            <nav class="site-navigation position-relative text-left" role="navigation">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
+                 <li class="has-children">
+                  <a href="{{route('series.index')}}" class="nav-link">Courses</a>
+                  <ul class="dropdown arrow-top">
+                    <li><a href="#our-team-section" class="nav-link">Electric Bass Style</a></li>
+                    <li><a href="#our-team-section" class="nav-link">African Bass Style</a></li>
+                    <li><a href="#our-team-section" class="nav-link">Jazz Bass Style</a></li>
+                  </ul>
+                </li>
+                 <li class="has-children">
+                  <a href="#about-section" class="nav-link">Instructors</a>
+                  <ul class="dropdown arrow-top">
+                    <li onclick="location.href='marvin.php';"><a href="marvin.php" target="" class="nav-link"><span class="text-primary">Marvin Thoaks</span></a></li>
+                    <li onclick="location.href='';"><a href="#our-team-section" class="nav-link">Mark Amoo</a></li>
+                    <li onclick="location.href='sa.php';"><a href="sa.php" class="nav-link">Kwabena SA</a></li>
+                  </ul>
+                </li>
+               
+                 <li onclick="location.href='packages.php';"><a href="packages.php" class="nav-link">Plans & Pricing</a></li>
+                 <li class="has-children">
+                  <a href="#about-section" class="nav-link">Resorces</a>
+                  <ul class="dropdown arrow-top">
+                    <li onclick="location.href='about.php';"><a href="about.php" class="nav-link">About Us</a></li>
+                    <li onclick="location.href='faq.php.php';"><a href="faq.php" class="nav-link">FAQ</a></li>
+                    <li onclick="location.href='terms.php';"><a href="terms.php" class="nav-link">Terms & Conditions</a></li>
+                  </ul>
+                </li>
+                 <li onclick="location.href='index.php#contact-section';"><a href="index.php#contact-section" class="nav-link">Contact</a></li>
+                 {{-- <li><i class="fa fa-shopping-cart" aria-hidden="true"></i></li> --}}
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fa fa-lock"></i></a>
+                                     {{-- <li onclick="location.href='login/index.html';"><a href="login/index.html" class="nav-link" >Log In <i class="fa fa-lock"></i></a></li> --}}
                                 </li>
                             @endif
+                            
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -70,14 +128,46 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                </ul>
+            
+            </nav>
+          </div>
+          <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0" ><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+      
+     </header>
+     
 
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+  </div>
+
+
+
+
+
+
+
+{{-- <script src="{{ asset('js/sitejs/vendor/aos/aos.js') }}"></script> --}}
+
+  
+  <script src="{{ asset('js/sitejs/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/jquery-ui.js') }}"></script>
+  <script src="{{ asset('js/sitejs/popper.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/jquery.countdown.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ asset('js/sitejs/aos.js') }}"></script>
+  <script src="{{ asset('js/sitejs/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ asset('js/sitejs/jquery.sticky.js') }}"></script>
+  <script src="{{ asset('js/sitejs/all_scripts.js')}}"></script>
+
+  
+  <script src="{{ asset('js/sitejs/main.js') }}"></script>
 </body>
 </html>
