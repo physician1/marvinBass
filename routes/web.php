@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Series;
 
@@ -32,4 +33,12 @@ Route::resource('/series', 'App\Http\Controllers\SeriesController');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+Route::group(['middleware'=> ['auth']], function() {
+
+    Route::post('checkout', [PaymentController::class, 'checkout'])->name('checkout');
+
+    Route::get('callback', [PaymentController::class, 'callback'])->name('callback');
+
 });
