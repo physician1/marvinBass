@@ -19,7 +19,9 @@ class CheckActivePlan
     {
         $plans = auth()->user()->userPlans()->where('expires_at', '>=', now())->count();
 
-        return $plans ? $next($request) : response()->view('', [], Response::HTTP_FORBIDDEN);
+//        return $plans ? $next($request) : response()->view('', [], Response::HTTP_FORBIDDEN);
+
+        return $plans ? $next($request) : redirect(url('/'))->with('payment', 'Please subscribe to a plan');
 
     }
 }

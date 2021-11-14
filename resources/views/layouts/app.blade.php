@@ -186,6 +186,13 @@
     {
         swal("Oops", "Payment was not successful", "error")
     }
+
+    let payment = "{{session('payment')}}";
+
+    if(payment)
+    {
+        swal("Plan Subscription", "Please subscribe to a plan before proceeding", "info")
+    }
 </script>
 
 

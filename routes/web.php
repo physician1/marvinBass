@@ -28,7 +28,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/series/{series}/episodes/{episodeNumber}', 'SeriesController@episode')->name('series.episode');
-Route::get('/series/{series}/episodes/{episodeNumber}', [App\Http\Controllers\SeriesController::class, 'episode'])->name('series.episode');
 Route::resource('/series', 'App\Http\Controllers\SeriesController');
 
 Route::group(['prefix' => 'admin'], function () {
@@ -40,5 +39,14 @@ Route::group(['middleware'=> ['auth']], function() {
     Route::post('checkout', [PaymentController::class, 'checkout'])->name('checkout');
 
     Route::get('callback', [PaymentController::class, 'callback'])->name('callback');
+
+
+
+    Route::group(['middleware' => ['plans.active']], function() {
+
+        Route::get('/series/{series}/episodes/{episodeNumber}', [App\Http\Controllers\SeriesController::class, 'episode'])->name('series.episode');
+
+
+    });
 
 });
