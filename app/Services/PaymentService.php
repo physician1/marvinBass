@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Http;
 class PaymentService
 {
 
-    private const TEST_PAY_STACK_SECRET = "sk_test_a2004703010bcd37fe75181c097fcc31ead4018b";
-    private const PROD_PAY_STACK_SECRET = "sk_live_407b84b90e43a23ffe99db7d01d595101dda9abc";
 
     public function checkout($data)
     {
@@ -38,7 +36,7 @@ class PaymentService
         ];
 
         return json_decode(Http::withToken(
-            env('APP_ENV') == 'local' ? self::TEST_PAY_STACK_SECRET : self::PROD_PAY_STACK_SECRET
+            env('APP_ENV') == 'local' ? env('PAY_STACK_TEST') : env('PAY_STACK_PROD')
         )->post('https://api.paystack.co/transaction/initialize', $fields));
     }
 
@@ -52,7 +50,7 @@ class PaymentService
         }
 
         $response = Http::withToken(
-            env('APP_ENV') == 'local' ? self::TEST_PAY_STACK_SECRET : self::PROD_PAY_STACK_SECRET
+            env('APP_ENV') == 'local' ? env('PAY_STACK_TEST') : env('PAY_STACK_PROD')
         )->get('https://api.paystack.co/transaction/verify/'.$data['trxref']);
 
 
